@@ -6,7 +6,8 @@ class Task(models.Model):
     """
     task_title = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now=True)
-    lower_task = models.ForeignKey('self', related_name='upper_task', null=True, on_delete=models.CASCADE)
+    lower_task = models.ForeignKey('self', related_name='upper_task', null=True, blank=True, on_delete=models.CASCADE)
 
-
+    def __str__(self):
+        return self.task_title
 
