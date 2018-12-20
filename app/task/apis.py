@@ -21,7 +21,7 @@ class TaskAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
             context = {"message": "task successfully created"}
-            return Response(context, status=status.HTTP_201_CREATED)
+            return Response(data=(context, serializer.data), status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request):
@@ -40,7 +40,7 @@ class TaskAPIView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 context = {"message": "task successfully updated"}
-                return Response(context, status=status.HTTP_206_PARTIAL_CONTENT)
+                return Response(data=(context, serializer.data), status=status.HTTP_206_PARTIAL_CONTENT)
             return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
         context = {"message": "task doesn't exist"}
         return Response(context, status=status.HTTP_404_NOT_FOUND)

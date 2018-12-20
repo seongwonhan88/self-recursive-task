@@ -15,4 +15,5 @@ class TaskSerializer(serializers.ModelSerializer):
             'modified_at',
             'completed',
             'child_tasks',
+            'parent_tasks',
         )
